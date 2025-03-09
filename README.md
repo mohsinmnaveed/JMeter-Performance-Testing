@@ -10,7 +10,7 @@ It includes various tests such as load, stress, spike, and endurance testing.
 
 ## 🔧 How to Run Tests
 
-1️⃣ Run with JMeter GUI
+###1️⃣ Run with JMeter GUI
 ```sh
 jmeter -t tests/login_test.jmx -l results/login_test_results.jtl
 
