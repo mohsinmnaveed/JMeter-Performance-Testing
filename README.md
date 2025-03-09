@@ -9,10 +9,10 @@ It includes various tests such as load, stress, spike, and endurance testing.
 - `scripts/` → Scripts for automation
 
 ## 🔧 How to Run Tests
-1️⃣ Run with JMeter GUI
+###1️⃣ Run with JMeter GUI
 jmeter -t tests/login_test.jmx -l results/login_test_results.jtl
 
-2️⃣ Run in CLI Mode
+###2️⃣ Run in CLI Mode
 jmeter -n -t tests/load_test.jmx -l results/load_test_results.jtl -e -o results/
 
 📊 Analyzing Results
