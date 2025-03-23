@@ -5,13 +5,15 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 1">
         <stringProp name="TestPlan.comments">Virtual Users Running Scenario 1. 
 Users will add an item to cart and checkout</stringProp>
-        <intProp name="ThreadGroup.num_threads">100</intProp>
-        <intProp name="ThreadGroup.ramp_time">50</intProp>
+        <intProp name="ThreadGroup.num_threads">50</intProp>
+        <intProp name="ThreadGroup.ramp_time">25</intProp>
         <longProp name="ThreadGroup.duration">60</longProp>
         <longProp name="ThreadGroup.delay">5</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
@@ -22,32 +24,28 @@ Users will add an item to cart and checkout</stringProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="false">
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
           <stringProp name="TestPlan.comments">Notice Timeouts:
 Read to 30s
 Connect to 5s</stringProp>
-          <intProp name="HTTPSampler.connect_timeout">5000</intProp>
+          <intProp name="HTTPSampler.connect_timeout">20000</intProp>
           <intProp name="HTTPSampler.response_timeout">30000</intProp>
-          <stringProp name="HTTPSampler.domain">example.org</stringProp>
+          <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.implementation"></stringProp>
         </ConfigTestElement>
         <hashTree/>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
-          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">true</boolProp>
         </CookieManager>
         <hashTree/>
-        <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="false">
-          <boolProp name="clearEachIteration">false</boolProp>
-          <boolProp name="useExpires">false</boolProp>
-          <boolProp name="CacheManager.controlledByThread">true</boolProp>
-        </CacheManager>
-        <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="User-Agent" elementType="Header">
               <stringProp name="Header.name">User-Agent</stringProp>
@@ -84,52 +82,37 @@ Connect to 5s</stringProp>
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Jacket-Size">
-          <collectionProp name="Arguments.arguments">
-            <elementProp name="XS" elementType="Argument">
-              <stringProp name="Argument.name">XS</stringProp>
-              <stringProp name="Argument.value">166</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-            <elementProp name="S" elementType="Argument">
-              <stringProp name="Argument.name">S</stringProp>
-              <stringProp name="Argument.value">167</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-            <elementProp name="M" elementType="Argument">
-              <stringProp name="Argument.name">M</stringProp>
-              <stringProp name="Argument.value">168</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-            <elementProp name="L" elementType="Argument">
-              <stringProp name="Argument.name">L</stringProp>
-              <stringProp name="Argument.value">169</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-            <elementProp name="XL" elementType="Argument">
-              <stringProp name="Argument.name">XL</stringProp>
-              <stringProp name="Argument.value">170</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-          </collectionProp>
-        </Arguments>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Jacket-Params">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="filename">D:/Self Study/JMeter/GIT-Portfolio/JMeter-Performance-Testing/data/Magento.Softwaretestingboard.com/Magento-Jackets.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
         <hashTree/>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Jacket-Colors" enabled="true">
-          <collectionProp name="Arguments.arguments">
-            <elementProp name="blue" elementType="Argument">
-              <stringProp name="Argument.name">blue</stringProp>
-              <stringProp name="Argument.value">50</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-          </collectionProp>
-        </Arguments>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="User Data">
+          <stringProp name="filename">D:/Self Study/JMeter/GIT-Portfolio/JMeter-Performance-Testing/data/Magento.Softwaretestingboard.com/Magento - Users.csv</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <stringProp name="delimiter">,</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+        </CSVDataSet>
         <hashTree/>
-        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="CheckOut"/>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+          <stringProp name="ConstantTimer.delay">1000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="CheckOut" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HomePage">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HomePage - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -140,10 +123,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Go To Jackets Listings">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Go To Jackets Listings" enabled="false">
             <stringProp name="HTTPSampler.path">/women/tops-women/jackets-women.html</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -154,11 +134,8 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Select Jacket">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
-            <stringProp name="HTTPSampler.path">/olivia-1-4-zip-light-jacket.html</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Select ${product_name}" enabled="true">
+            <stringProp name="HTTPSampler.path">/${product_name}.html</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -189,11 +166,8 @@ Connect to 5s</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SessionRefresh">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SessionRefresh - ${product_name}" enabled="true">
             <stringProp name="TestPlan.comments">Get Fresh Form Key for Cart</stringProp>
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/checkout/cart/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -204,7 +178,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Form Key">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Form Key" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">form_key</stringProp>
               <stringProp name="RegexExtractor.regex">&lt;input name=&quot;form_key&quot; type=&quot;hidden&quot; value=&quot;([^&quot;]+)&quot; /&gt;</stringProp>
@@ -215,10 +189,7 @@ Connect to 5s</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add To Cart">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add ${product_name} To Cart" enabled="true">
             <stringProp name="HTTPSampler.path">/checkout/cart/add/uenc/${referer_id}/product/${product_id}/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -266,21 +237,21 @@ Connect to 5s</stringProp>
                 <elementProp name="super_attribute[143]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">super_attribute[143]</stringProp>
-                  <stringProp name="Argument.value">${S}</stringProp>
+                  <stringProp name="Argument.value">${size}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="super_attribute[93]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">super_attribute[93]</stringProp>
-                  <stringProp name="Argument.value">${blue}</stringProp>
+                  <stringProp name="Argument.value">${color}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="qty" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">qty</stringProp>
-                  <stringProp name="Argument.value">2</stringProp>
+                  <stringProp name="Argument.value">${qty}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -288,10 +259,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Check Cart">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Check Cart - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/customer/section/load/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -334,7 +302,7 @@ Connect to 5s</stringProp>
               <intProp name="Assertion.test_type">2</intProp>
             </ResponseAssertion>
             <hashTree/>
-            <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion">
+            <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion" enabled="true">
               <stringProp name="JSON_PATH">$.messages.messages[0].type</stringProp>
               <stringProp name="EXPECTED_VALUE">success</stringProp>
               <boolProp name="JSONVALIDATION">true</boolProp>
@@ -344,10 +312,7 @@ Connect to 5s</stringProp>
             </JSONPathAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Go to Cart">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Go to Cart - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/checkout/cart/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -358,7 +323,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="3578073">Proceed to Checkout</stringProp>
               </collectionProp>
@@ -378,7 +343,7 @@ Connect to 5s</stringProp>
               <intProp name="Assertion.test_type">2</intProp>
             </ResponseAssertion>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Cart ID">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Cart ID" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">cart_id</stringProp>
               <stringProp name="RegexExtractor.regex">&quot;quoteData&quot;:{&quot;entity_id&quot;:&quot;([^&quot;]+)&quot;</stringProp>
@@ -389,10 +354,7 @@ Connect to 5s</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Proceed To Checkout">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Proceed To Checkout - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/checkout/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -405,10 +367,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - isEmailAvailable">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - isEmailAvailable - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/rest/default/V1/customers/isEmailAvailable</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -418,17 +377,14 @@ Connect to 5s</stringProp>
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;customerEmail&quot;:&quot;usr1@abc.com&quot;}</stringProp>
+                  <stringProp name="Argument.value">{&quot;customerEmail&quot;:&quot;${email}&quot;}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - estimate-shipping-methods">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - estimate-shipping-methods - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/rest/default/V1/guest-carts/${cart_id}/estimate-shipping-methods</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -442,17 +398,17 @@ Connect to 5s</stringProp>
                   <stringProp name="Argument.value">{&#xd;
 	&quot;address&quot;: {&#xd;
 		&quot;street&quot;: [&#xd;
-			&quot;123 main street&quot;&#xd;
+			&quot;${street}&quot;&#xd;
 		],&#xd;
-		&quot;city&quot;: &quot;Los Angeles&quot;,&#xd;
-		&quot;region_id&quot;: &quot;12&quot;,&#xd;
-		&quot;region&quot;: &quot;California&quot;,&#xd;
-		&quot;country_id&quot;: &quot;US&quot;,&#xd;
-		&quot;postcode&quot;: &quot;90001&quot;,&#xd;
-		&quot;firstname&quot;: &quot;john&quot;,&#xd;
-		&quot;lastname&quot;: &quot;doe&quot;,&#xd;
+		&quot;city&quot;: &quot;${city}&quot;,&#xd;
+		&quot;region_id&quot;: &quot;${region_id}&quot;,&#xd;
+		&quot;region&quot;: &quot;${region}&quot;,&#xd;
+		&quot;country_id&quot;: &quot;${country_id}&quot;,&#xd;
+		&quot;postcode&quot;: &quot;${postcode}&quot;,&#xd;
+		&quot;firstname&quot;: &quot;${firstname}&quot;,&#xd;
+		&quot;lastname&quot;: &quot;${lastname}&quot;,&#xd;
 		&quot;company&quot;: &quot;&quot;,&#xd;
-		&quot;telephone&quot;: &quot;+9652145563&quot;&#xd;
+		&quot;telephone&quot;: &quot;${telephone}&quot;&#xd;
 	}&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
@@ -461,10 +417,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - shipping-information">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - shipping-information - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/rest/default/V1/guest-carts/${cart_id}/shipping-information</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -474,17 +427,14 @@ Connect to 5s</stringProp>
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;addressInformation&quot;:{&quot;shipping_address&quot;:{&quot;countryId&quot;:&quot;US&quot;,&quot;regionId&quot;:&quot;12&quot;,&quot;regionCode&quot;:&quot;CA&quot;,&quot;region&quot;:&quot;California&quot;,&quot;street&quot;:[&quot;123 main street&quot;],&quot;company&quot;:&quot;&quot;,&quot;telephone&quot;:&quot;+9652145563&quot;,&quot;postcode&quot;:&quot;90001&quot;,&quot;city&quot;:&quot;Los Angeles&quot;,&quot;firstname&quot;:&quot;John&quot;,&quot;lastname&quot;:&quot;Doe&quot;},&quot;billing_address&quot;:{&quot;countryId&quot;:&quot;US&quot;,&quot;regionId&quot;:&quot;12&quot;,&quot;regionCode&quot;:&quot;CA&quot;,&quot;region&quot;:&quot;California&quot;,&quot;street&quot;:[&quot;123 main street&quot;],&quot;company&quot;:&quot;&quot;,&quot;telephone&quot;:&quot;+9652145563&quot;,&quot;postcode&quot;:&quot;90001&quot;,&quot;city&quot;:&quot;Los Angeles&quot;,&quot;firstname&quot;:&quot;John&quot;,&quot;lastname&quot;:&quot;Doe&quot;,&quot;saveInAddressBook&quot;:null},&quot;shipping_method_code&quot;:&quot;bestway&quot;,&quot;shipping_carrier_code&quot;:&quot;tablerate&quot;,&quot;extension_attributes&quot;:{}}}</stringProp>
+                  <stringProp name="Argument.value">{&quot;addressInformation&quot;:{&quot;shipping_address&quot;:{&quot;countryId&quot;:&quot;${country_id}&quot;,&quot;regionId&quot;:&quot;${region_id}&quot;,&quot;regionCode&quot;:&quot;${region_code}&quot;,&quot;region&quot;:&quot;${region}&quot;,&quot;street&quot;:[&quot;${street}&quot;],&quot;company&quot;:&quot;&quot;,&quot;telephone&quot;:&quot;${telephone}&quot;,&quot;postcode&quot;:&quot;${postcode}&quot;,&quot;city&quot;:&quot;${city}&quot;,&quot;firstname&quot;:&quot;${firstname}&quot;,&quot;lastname&quot;:&quot;${lastname}&quot;},&quot;billing_address&quot;:{&quot;countryId&quot;:&quot;${country_id}&quot;,&quot;regionId&quot;:&quot;${region_id}&quot;,&quot;regionCode&quot;:&quot;${region_code}&quot;,&quot;region&quot;:&quot;${region}&quot;,&quot;street&quot;:[&quot;${street}&quot;],&quot;company&quot;:&quot;&quot;,&quot;telephone&quot;:&quot;${telephone}&quot;,&quot;postcode&quot;:&quot;${postcode}&quot;,&quot;city&quot;:&quot;${city}&quot;,&quot;firstname&quot;:&quot;${firstname}&quot;,&quot;lastname&quot;:&quot;${lastname}&quot;,&quot;saveInAddressBook&quot;:null},&quot;shipping_method_code&quot;:&quot;bestway&quot;,&quot;shipping_carrier_code&quot;:&quot;tablerate&quot;,&quot;extension_attributes&quot;:{}}}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - set-payment-information">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - set-payment-information - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/rest/default/V1/guest-carts/${cart_id}/set-payment-information</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -494,17 +444,14 @@ Connect to 5s</stringProp>
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;cartId&quot;:&quot;${cart_id}&quot;,&quot;paymentMethod&quot;:{&quot;method&quot;:&quot;checkmo&quot;},&quot;email&quot;:&quot;usr1@abc.com&quot;}</stringProp>
+                  <stringProp name="Argument.value">{&quot;cartId&quot;:&quot;${cart_id}&quot;,&quot;paymentMethod&quot;:{&quot;method&quot;:&quot;checkmo&quot;},&quot;email&quot;:&quot;${email}&quot;}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Check Cart Session">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Check Cart Session - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/rest/default/V1/guest-carts/${cart_id}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -515,10 +462,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - totals">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - totals - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/rest/default/V1/guest-carts/${cart_id}/totals</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -537,10 +481,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - payment-information">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API - payment-information - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/rest/default/V1/guest-carts/${cart_id}/payment-information</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -550,17 +491,19 @@ Connect to 5s</stringProp>
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;cartId&quot;:&quot;${cart_id}&quot;,&quot;billingAddress&quot;:{&quot;countryId&quot;:&quot;US&quot;,&quot;regionId&quot;:&quot;12&quot;,&quot;regionCode&quot;:&quot;CA&quot;,&quot;region&quot;:&quot;California&quot;,&quot;street&quot;:[&quot;123 main street&quot;],&quot;company&quot;:&quot;&quot;,&quot;telephone&quot;:&quot;+9652145563&quot;,&quot;postcode&quot;:&quot;90001&quot;,&quot;city&quot;:&quot;Los Angeles&quot;,&quot;firstname&quot;:&quot;John&quot;,&quot;lastname&quot;:&quot;Doe&quot;,&quot;saveInAddressBook&quot;:null},&quot;paymentMethod&quot;:{&quot;method&quot;:&quot;checkmo&quot;,&quot;po_number&quot;:null,&quot;additional_data&quot;:null},&quot;email&quot;:&quot;usr1@abc.com&quot;}</stringProp>
+                  <stringProp name="Argument.value">{&quot;cartId&quot;:&quot;${cart_id}&quot;,&quot;billingAddress&quot;:{&quot;countryId&quot;:&quot;${country_id}&quot;,&quot;regionId&quot;:&quot;${region_id}&quot;,&quot;regionCode&quot;:&quot;${region_code}&quot;,&quot;region&quot;:&quot;${region}&quot;,&quot;street&quot;:[&quot;${street}&quot;],&quot;company&quot;:&quot;&quot;,&quot;telephone&quot;:&quot;${telephone}&quot;,&quot;postcode&quot;:&quot;${postcode}&quot;,&quot;city&quot;:&quot;${city}&quot;,&quot;firstname&quot;:&quot;${firstname}&quot;,&quot;lastname&quot;:&quot;${lastname}&quot;,&quot;saveInAddressBook&quot;:null},&quot;paymentMethod&quot;:{&quot;method&quot;:&quot;checkmo&quot;,&quot;po_number&quot;:null,&quot;additional_data&quot;:null},&quot;email&quot;:&quot;${email}&quot;}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
           </HTTPSamplerProxy>
-          <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Success Page">
-            <stringProp name="HTTPSampler.domain">magento.softwaretestingboard.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <hashTree>
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+              <stringProp name="ConstantTimer.delay">2000</stringProp>
+            </ConstantTimer>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Success Page - ${product_name}" enabled="true">
             <stringProp name="HTTPSampler.path">/checkout/onepage/success/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -571,7 +514,7 @@ Connect to 5s</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="2089874753">Your order</stringProp>
               </collectionProp>
@@ -626,7 +569,7 @@ Connect to 5s</stringProp>
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
