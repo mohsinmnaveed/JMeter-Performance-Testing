@@ -10,14 +10,14 @@ It includes various tests such as load, stress, spike, and endurance testing.
 
 ## 🔧 How to Run Tests
 1️⃣ Run with JMeter GUI:
-jmeter -t tests/login_test.jmx -l results/login_test_results.jtl
+jmeter -t tests/test_name.jmx -l results/test_name_results.jtl
 
 2️⃣ Run in CLI Mode:
-jmeter -n -t tests/load_test.jmx -l results/load_test_results.jtl -e -o results/
+jmeter -n -t tests/test_name.jmx -l results/test_name_results.jtl -e -o results/
 
 📊 Analyzing Results
 •	View results/load_test_report.html for performance metrics.
-•	Use Grafana for real-time monitoring with InfluxDB.
+•	Used Grafana for real-time monitoring with InfluxDB.
 
 🛠️ Requirements
 •	JMeter 5.x
