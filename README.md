@@ -7,6 +7,7 @@ It includes various tests such as load, stress, spike, and endurance testing.
 - `data/` → CSV files for dynamic test data
 - `results/` → Test reports and logs
 - `scripts/` → Scripts for automation
+- `dashboard/` → Grafana dashboards
 
 ## 🔧 How to Run Tests
 1️⃣ Run with JMeter GUI:
