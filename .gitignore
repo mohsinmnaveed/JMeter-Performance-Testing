@@ -1,6 +1,5 @@
 # Ignore JMeter temporary and result files
 *.jtl
 *.log
-results/
 output/
 .DS_Store
